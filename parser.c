@@ -66,7 +66,7 @@ struct Node_Un *Node_Un_Alloc(struct StackAllocator *alloc, enum Node_Un_Type ty
 }
 
 struct Node *PTopLevel(struct Parser *self);
-struct Node *PStatement(struct Parser *self);
+struct Node *PStmt(struct Parser *self);
 struct Node *PExpr(struct Parser *self);
 struct Node *PAtom(struct Parser *self);
 
@@ -196,6 +196,17 @@ DEF_POps(
 	Node_Bin_Type_FromTokenType(t->type)
 )
 
+struct Node *PTopLevel(struct Parser *self)
+{
+	
+}
+
 struct Node *Parser_Parse_TopLevel(struct Parser *self)
 { return PTopLevel(self); }
+
+struct Node *Parser_Parse_Statement(struct Parser *self)
+{ return PStmt(self); }
+
+struct Node *Parser_Parse_Expression(struct Parser *self)
+{ return PExpr(self); }
 

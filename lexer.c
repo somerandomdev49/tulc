@@ -82,6 +82,18 @@ void Lexer_Read(struct Lexer *self)
 		else
 		{
 			struct Token *t = StackAllocator_Alloc(&self->tokens.token_allocator, sizeof(struct Token));
+			char d = Lexer_Next(self);
+#define O(S, T) if(c == #S[0] && d == #S[1]) t->type = T
+			O(->, TokenType_eArrow);
+			O(==, TokenType_eDoubleEqual);
+			O(>>, TokenType_eDoubleGreater);
+			O(<<, TokenType_eDoubleLess);
+			O(!=, TokenType_eNotEqual);
+			O(>=, TokenType_eGreaterEqual);
+			O(<=, TokenType_eLessEqual);
+			O(||, TokenType_eDoubleBar);
+			O(&&, TokenType_eDoubleAmp);
+#undef O
 			t->type = c;
 			++self->tokens.token_count;
 			c = Lexer_Next(self);

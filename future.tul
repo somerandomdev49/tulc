@@ -1,0 +1,25 @@
+
+class Pointer = void*;
+class AnyAllocator;
+class Pointer T Allocate(class AnyAllocator T *this);
+void DeAllocate(class AnyAllocator T *this, void *ptr);
+
+struct Person
+{
+    const char *name;
+    unsigned int age;
+};
+
+void Greet(const struct Person *this, FILE *output)
+{
+    fprintf(output, "Hello, %s!\n", this->name);
+}
+
+char *ToString(const struct Person *this, class AnyAllocator T *allocator)
+{
+    const char *fmt = "%s, %d";
+    size_t size = snprintf(NULL, 0, fmt, this->name, this->age);
+    char *c = allocator:Allocate(size + 1);
+    snprintf(c, size + 1, fmt, this->name, this->age);
+    return c;
+}
