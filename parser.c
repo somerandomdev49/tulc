@@ -196,9 +196,20 @@ DEF_POps(
 	Node_Bin_Type_FromTokenType(t->type)
 )
 
+struct Node *PDecl(struct Parser *self)
+{
+
+}
+
+struct Node *PFUncDef(struct Parser *self)
+{
+	// decl-spec declr decl-list? comp-stmt
+
+}
+
 struct Node *PTopLevel(struct Parser *self)
 {
-	
+	// func-def | decl
 }
 
 struct Node *Parser_Parse_TopLevel(struct Parser *self)
