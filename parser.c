@@ -16,12 +16,12 @@ void Parser_Free(struct Parser *self)
 
 static inline struct Token *Get_(struct Parser *self)
 {
-	return &self->tokens->token_allocator.data[self->index++];
+	return &((struct Token *)self->tokens->token_allocator.data)[self->index++];
 }
 
 static inline struct Token *PeekN_(struct Parser *self, int n)
 {
-	return &self->tokens->token_allocator.data[self->index + n - 1];
+	return &((struct Token *)self->tokens->token_allocator.data)[self->index + n - 1];
 }
 
 static inline struct Token *Peek_(struct Parser *self)
